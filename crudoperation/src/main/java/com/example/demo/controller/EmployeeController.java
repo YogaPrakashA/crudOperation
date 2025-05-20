@@ -22,7 +22,7 @@ import com.example.demo.serviceImpl.EmployeeService;
 public class EmployeeController {
 
 	@Autowired
-	EmployeeService employeeService;
+	 EmployeeService employeeService;
 
 	@PostMapping("/insert")
 	public String insertEmp(@RequestBody Employee employee) {
