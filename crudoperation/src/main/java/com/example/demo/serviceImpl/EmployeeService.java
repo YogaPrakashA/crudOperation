@@ -24,13 +24,10 @@ public class EmployeeService implements EmployeeServiceImpl {
 
 		try {
 
-			if (employee == null) {
-				response = "Employee details empty";
-			} else {
-				empList.add(employee);
-				System.out.println(empList);
-				response = "Insert successfully";
-			}
+			if (employee == null)
+				return "Employee details empty";
+
+			empList.add(employee);
 
 			empList.stream()
 					.forEach(emp -> System.out.println(emp.getName() + " " + emp.getRole() + " " + emp.getSalary()));
@@ -38,7 +35,7 @@ public class EmployeeService implements EmployeeServiceImpl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return response;
+		return "Insert successfully";
 	}
 
 	@Override
@@ -58,57 +55,46 @@ public class EmployeeService implements EmployeeServiceImpl {
 	@Override
 	public String deleteEmp(String name) {
 		boolean res = empList.removeIf(empList1 -> empList1.getName().equals(name));
-		if (res)
-			return "Deteleted success";
-		else
-			return "Deleted Unsuccess";
+
+		return res ? name + "Your account deleted successfully. " : "Invalid User";
+
 	}
 
 	@Override
 	public String updateEmpDetails(Employee emp) {
 		String name = emp.getName() == null ? "" : emp.getName();
-		String res = "";
 		int index = 0;
-		if (!name.trim().isEmpty()) {
-			for (int i = 0; i < empList.size(); i++) {
 
-				if (empList.get(i).getName().equals(emp.getName())) {
-					index = i;
-				}
-			}
-			if (empList.get(index).getName().equals(emp.getName())) {
-				Employee updEmp = new Employee();
-				updEmp.setName(emp.getName() == null ? empList.get(index).getName() : emp.getName());
-				updEmp.setRole(emp.getRole() == null ? empList.get(index).getRole() : emp.getRole());
-				updEmp.setSalary(emp.getSalary() == 0 ? empList.get(index).getSalary() : emp.getSalary());
-				empList.set(index, updEmp);
-				res = "Update success";
-			} else {
-				res = "Invalid name";
-			}
+		if (name.trim().isEmpty())
+			return "Invalid input";
 
-		} else {
-			res = "name is empty";
+		for (int i = 0; i < empList.size(); i++) {
+
+			if (empList.get(i).getName().equals(emp.getName()))
+				index = i;
+
 		}
-		return res;
+
+		if (emp.getName().equals(empList.get(index).getName())) {
+			@SuppressWarnings("static-access")
+			Employee updEmp = new Employee().builder().name(emp.getName()).role(emp.getRole()).salary(emp.getSalary())
+					.build();
+
+			empList.set(index, updEmp);
+
+			return "Update success";
+		}
+
+		return "Invalid name";
 
 	}
 
-	
 	public void sum1() {
-		
-		Integer totalSalary = empList.stream().filter(list -> list.getRole().equals("SSE")).mapToInt(Employee::getSalary)
-				.sum();
-		
-		System.out.println("Total salary :: "+ totalSalary);
-	}
-	
 
-	/*
-	 * public static void main(String[] args) { Person person = new Person("abc",
-	 * "xyz", 100.0, null);
-	 * 
-	 * person.setRole(person.getRole()); }
-	 */
-	
+		Integer totalSalary = empList.stream().filter(list -> list.getRole().equals("SSE"))
+				.mapToInt(Employee::getSalary).sum();
+
+		System.out.println("Total salary :: " + totalSalary);
+	}
+
 }

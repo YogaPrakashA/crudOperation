@@ -1,9 +1,0 @@
-/**
- * 
- */
-/**
- * @author aspra
- *
- */
-module JavaPGP {
-}
