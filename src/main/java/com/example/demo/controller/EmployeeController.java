@@ -97,4 +97,11 @@ public class EmployeeController {
 
 	}
 
+	@GetMapping("/hello")
+	public String hello() {
+
+		return "hey!! buddy's I'm jenkins";
+
+	}
+	
 }
