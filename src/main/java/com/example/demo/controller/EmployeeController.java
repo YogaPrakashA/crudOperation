@@ -100,7 +100,7 @@ public class EmployeeController {
 	@GetMapping("/hello")
 	public String hello() {
 
-		return "hey!! buddy's I'm jenkins";
+		return "hey!! buddy's we successfully initiated our first CI/CD";
 
 	}
 	
