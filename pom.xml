@@ -6,7 +6,8 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.0</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />
+		
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>crudoperation</artifactId>
@@ -14,9 +15,9 @@
 	<name>crudoperation</name>
 	<description>crudOperation</description>
 	<packaging>jar</packaging>
-	<build>
-		<finalName>crudOperation</finalName>
-	</build>
+<!--	<build>-->
+<!--		<finalName>crudOperation</finalName>-->
+<!--	</build>-->
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -25,7 +26,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -39,16 +39,18 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<!--	<build>-->
-	<!--		<plugins>-->
-	<!--			<plugin>-->
-	<!--				<groupId>org.springframework.boot</groupId>-->
-	<!--				<artifactId>spring-boot-maven-plugin</artifactId>-->
-	<!--			</plugin>-->
-	<!--		</plugins>-->
-	<!--	</build>-->
+	<build>
+		<finalName>crudOperation</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
